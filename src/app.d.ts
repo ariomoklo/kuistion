@@ -13,7 +13,6 @@ declare global {
 
 		interface Player {
 			id: string
-			avatar: number
 			name: string
 			ready: boolean
 			point: number

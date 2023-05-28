@@ -1,7 +1,6 @@
 export function load(ctx) {
     const player: App.Player = {
         id: 'ad6f39b3-26c6-451e-9736-3f8f1e0a4f30',
-        avatar: 2,
         name: 'ariomoklo',
         point: 0,
         host: true,
@@ -20,13 +19,13 @@ export function load(ctx) {
 
     const people: App.Player[] = [
         player,
-		{ id: 'e83320f0-34b1-4fb9-b961-df467a11a100', avatar: 14, name: 'Michael', point: 0, ready: true, vote: true },
-		{ id: '405981ff-eb32-443e-b37b-b7c4a3141724', avatar: 40, name: 'Janet', point: 0, ready: false, vote: false },
-		{ id: 'cfc978ad-0058-4b47-bf8c-f30e9c8179b5', avatar: 31, name: 'Susan', point: 0, ready: true },
-		{ id: '13c2125a-38f1-48eb-abb2-e6d2cc2dfa0e', avatar: 56, name: 'Joey', point: 0, ready: true },
-		{ id: '8acf1afd-51b2-4f6e-8ada-67ba6d37ae06', avatar: 24, name: 'Lara', point: 0, ready: true },
-		{ id: '38f857ba-2311-4e12-a98f-8f18df1b8592', avatar: 9, name: 'Melissa', point: 0, ready: false },
-		{ id: 'cfc978ad-0058-4b47-bf8c-f30e9c8179b5', avatar: 31, name: 'Wenty', point: 0, ready: true, winner: true },
+		{ id: 'e83320f0-34b1-4fb9-b961-df467a11a100', name: 'Michael', point: 0, ready: true, vote: true },
+		{ id: '405981ff-eb32-443e-b37b-b7c4a3141724', name: 'Janet', point: 0, ready: false, vote: false },
+		{ id: 'cfc978ad-0058-4b47-bf8c-f30e9c8179b5', name: 'Susan', point: 0, ready: true },
+		{ id: '13c2125a-38f1-48eb-abb2-e6d2cc2dfa0e', name: 'Joey', point: 0, ready: true },
+		{ id: '8acf1afd-51b2-4f6e-8ada-67ba6d37ae06', name: 'Lara', point: 0, ready: true },
+		{ id: '38f857ba-2311-4e12-a98f-8f18df1b8592', name: 'Melissa', point: 0, ready: false },
+		{ id: 'cfc978ad-0058-4b47-bf8c-f30e9c8179b5', name: 'Wenty', point: 0, ready: true, winner: true },
 	];
 
     const roomID = ctx.params.roomid

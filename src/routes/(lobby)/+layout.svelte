@@ -80,7 +80,7 @@ export let data
 
             <svelte:fragment slot="content">
                 {#if data.room}
-                    <SidebarGameItem room="{data.room}" />
+                    <SidebarGameItem room="{data.room}" user={data.player} />
                 {:else}
                     <small class="opacity-50">My Game Rooms</small>
                     <ul>
@@ -97,7 +97,7 @@ export let data
     </div>
     
     <div class="flex flex-col justify-stretch w-full h-screen min-h-screen">
-        <PlayerBanner player={data.player} meta={({ questionCount: 10, gameCount: 6 })} />
+        <PlayerBanner room={data.room} player={data.player} meta={({ questionCount: 10, gameCount: 6 })} />
         
         <slot></slot>
     </div>

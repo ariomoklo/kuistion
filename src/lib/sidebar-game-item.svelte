@@ -1,10 +1,13 @@
 <script lang="ts">
 import PlayerAvatar from './player-avatar.svelte';
 export let room: App.Room
+export let user: App.Player
+
+$: players = room.players.filter(p => p.id !== user.id)
 </script>
 
 <ul class="space-y-2">
-    {#each room.players as player, i}
+    {#each players as player, i}
         <li class="flex items-center gap-2 py-2 px-2 bg-primary-500/20 rounded-lg">
             <PlayerAvatar name={player.name} scale={60} rounded="md" />
 
