@@ -33,11 +33,12 @@ export function load(ctx) {
     const foundRoom = rooms.find(r => r.name === roomID)
     if (!roomID || !foundRoom) {
         // roomID undefined, return only room list
-        return { rooms }
+        return { rooms, player }
     }
 
     return { 
         rooms, 
+        player,
         room: {
             ...foundRoom,
             players: people

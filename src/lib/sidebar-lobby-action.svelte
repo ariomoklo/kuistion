@@ -5,11 +5,11 @@
 
 {#if room}
     {#if !($page.url.pathname.endsWith('about'))}
-        <a href="/room/{room.id}/about" class="btn variant-filled w-full">About</a>
+        <a href="/room/{room.name}/about" class="btn variant-filled w-full">About</a>
     {:else}
-        <a href="/room/{room.id}" class="btn variant-filled w-full">Back to Game</a>
+        <a href="/room/{room.name}" class="btn variant-filled w-full">Back to Game</a>
     {/if}
-    <a href="/room/{room.id}/forfeit" class="btn variant-filled-secondary w-full">Forfeit</a>
+    <a href="/room/{room.name}/forfeit" class="btn variant-filled-secondary w-full">Forfeit</a>
 {:else}
     <!-- Create Room Action -->
     {#if $page.url.pathname !== "/room/create"}

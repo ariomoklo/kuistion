@@ -5,11 +5,11 @@ import SidebarTemplate from '$lib/sidebar-template.svelte';
 import SidebarLobbyAction from '$lib/sidebar-lobby-action.svelte';
 import SidebarRoomItem from '$lib/sidebar-room-item.svelte';
 import SidebarGameItem from '$lib/sidebar-game-item.svelte';
+import PlayerBanner from '$lib/player-banner.svelte';
 import IconBack from "~icons/streamline/interface-arrows-turn-backward-arrow-bend-curve-change-direction-return-left-back-backward"
 import IconMenuBar from '~icons/streamline/interface-setting-menu-parallel-hamburger-square-navigation-parallel-hamburger-buttonmenu-square'
 import IconClose from '~icons/streamline/interface-delete-2-remove-bold-add-button-buttons-delete'
 
-import { page } from '$app/stores';
 export let data
 </script>
 
@@ -95,10 +95,10 @@ export let data
             </svelte:fragment>
         </SidebarTemplate>
     </div>
-    <!-- Chat -->
-    <div class="flex w-full justify-center items-center">
-        <div class="max-w-xl px-4">
-            <slot></slot>
-        </div>
+    
+    <div class="flex flex-col justify-stretch w-full h-screen min-h-screen">
+        <PlayerBanner player={data.player} meta={({ questionCount: 10, gameCount: 6 })} />
+        
+        <slot></slot>
     </div>
 </div>
