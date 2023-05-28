@@ -25,12 +25,11 @@
         <p class="inline-flex gap-2 flex-wrap text-xs">
 
             {#if room}
-                <span class="inline-flex items-center">
-                    <span class="bg-black text-white px-2 py-1 rounded-s-full">point</span>
-                    <span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-e-full">{playerRoomData.point}</span>
-                </span>
-                
                 {#if room.status === 'in-play'}
+                    <span class="inline-flex items-center">
+                        <span class="bg-black text-white px-2 py-1 rounded-s-full">point</span>
+                        <span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-e-full">{playerRoomData.point}</span>
+                    </span>
                     {#if playerRoomData.vote === true}
                         <span class="inline-flex items-center">
                             <span class="bg-black px-2 py-1 rounded-s-full">vote</span>
@@ -48,6 +47,11 @@
                             <span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-full">⁉️ maker</span>
                         </span>
                     {/if}
+                {:else if room.status === 'waiting'}
+                    <p class="text-xs">
+                        Write min [ {room.questionPerPlayer} ] question based on the topic <b class="text-primary-500">"{room.topic}"</b>.
+                        <br>Then <kbd class="bg-success-500 text-on-success-token px-1">Submit</kbd> when you are ready. Good Luck 🔥.
+                    </p>
                 {:else}
                     {#if player.ready}
                         <span class="inline-flex items-center">
