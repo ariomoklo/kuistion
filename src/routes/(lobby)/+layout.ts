@@ -4,7 +4,7 @@ export function load(ctx) {
         name: 'ariomoklo',
         point: 0,
         host: true,
-        ready: true,
+        ready: false,
         asker: true
     }
 

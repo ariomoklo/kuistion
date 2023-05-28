@@ -1,1 +1,26 @@
-/* Write your global styles here, in PostCSS syntax */
+:root {
+  --theme-font-family-base: 
+}
+
+.milkdown {
+  width: 100%;
+}
+
+.ProseMirror.prose {
+  max-width: none !important;
+  outline: none !important;
+  margin: 0px;
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
+
+.ProseMirror.prose h1,
+.ProseMirror.prose h2,
+.ProseMirror.prose h3,
+.ProseMirror.prose h4 {
+  font-family: 'Monomaniac One', sans-serif !important;
+}
+
+.QuestionEditor + .QuestionEditor {
+  border-top: dashed 2px rgb(var(--color-surface-500));
+  padding-top: 1rem;
+}

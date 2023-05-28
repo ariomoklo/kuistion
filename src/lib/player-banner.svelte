@@ -54,11 +54,6 @@
                             <span class="bg-black text-white px-2 py-1 rounded-s-full">🙆‍♂️</span>
                             <span class="bg-success-500 px-2 py-1 rounded-e-full">ready</span>
                         </span>
-                    {:else}
-                        <span class="inline-flex items-center">
-                            <span class="bg-black text-white px-2 py-1 rounded-s-full">🙆‍♂️</span>
-                            <span class="bg-warning-500 text-on-warning-token px-2 py-1 rounded-e-full">waiting</span>
-                        </span>
                     {/if}
                 {/if}
             {:else}

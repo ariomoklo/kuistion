@@ -14,12 +14,15 @@ $: players = room.players.filter(p => p.id !== user.id)
             <article>
                 <p class="mb-1">{player.name} {player.host ? '[🤖:host]' : ''} {player.winner ? '[🏆:winner]' : ''}</p>
                 <p class="inline-flex gap-2 flex-wrap text-xs">
-                    <span class="inline-flex items-center">
-                        <span class="bg-black text-white px-2 py-1 rounded-s-full">point</span>
-                        <span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-e-full">{player.point}</span>
-                    </span>
+
                     
                     {#if room.status === 'in-play'}
+                        
+                        <span class="inline-flex items-center">
+                            <span class="bg-black text-white px-2 py-1 rounded-s-full">point</span>
+                            <span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-e-full">{player.point}</span>
+                        </span>
+
                         {#if player.vote === true}
                             <span class="inline-flex items-center">
                                 <span class="bg-black px-2 py-1 rounded-s-full">vote</span>
@@ -46,7 +49,7 @@ $: players = room.players.filter(p => p.id !== user.id)
                         {:else}
                             <span class="inline-flex items-center">
                                 <span class="bg-black text-white px-2 py-1 rounded-s-full">🙆‍♂️</span>
-                                <span class="bg-warning-500 text-on-warning-token px-2 py-1 rounded-e-full">waiting</span>
+                                <span class="bg-warning-500 text-on-warning-token px-2 py-1 rounded-e-full">not ready</span>
                             </span>
                         {/if}
                     {/if}
