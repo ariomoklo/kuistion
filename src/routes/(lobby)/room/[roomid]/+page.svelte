@@ -9,13 +9,17 @@ const questions = new Array(data.room?.questionPerPlayer ?? 1).fill(true).map((_
 <div class="grow w-full overflow-auto">
     {#if data.player.ready}
 
-        {#if data.room?.status === 'waiting'}
+        {#if data.room.status === 'waiting'}
             <div class="flex w-full h-full m-auto items-center justify-center">
                 <p>Waiting for other player</p>
             </div>
         {/if}
 
-        <!-- content here -->
+        {#if data.room.status === 'in-play' && data.question}
+            <div class="mx-auto max-w-3xl p-4 space-y-8">
+                <QuestionEditor question={data.question} />
+            </div>    
+        {/if}
 
     {:else}
         <div class="mx-auto max-w-3xl p-4 space-y-8">
@@ -27,5 +31,13 @@ const questions = new Array(data.room?.questionPerPlayer ?? 1).fill(true).map((_
 </div>
 
 <footer class="grow-0 text-right w-full p-4 border-t border-surface-500/30">
-    <button class="btn variant-filled-success"><span class="mx-8">Submit & Ready</span></button>
+    <button class="btn variant-filled-success"><span class="mx-8">
+        {#if data.room.status === 'waiting'}
+            Submit & Ready
+        {:else if data.room.status === 'in-play'}
+            Submit Answer
+        {:else}
+             <!-- else content here -->
+        {/if}
+    </span></button>
 </footer>

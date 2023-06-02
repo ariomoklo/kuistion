@@ -5,10 +5,14 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
 		// interface PageData {}
 		// interface Platform {}
-
+		interface Locals {
+			user: Player
+			pname: string | undefined
+			token: string | undefined
+		}
+		
 		type GameStatus = 'waiting' | 'ready' | 'in-play' | 'finish'
 
 		interface Player {
