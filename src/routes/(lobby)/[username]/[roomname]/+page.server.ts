@@ -1,8 +1,8 @@
 import { error } from '@sveltejs/kit'
 
-export async function load({ parent }) {
+export async function load(event) {
 
-  const data = await parent()
+  const data = await event.parent()
   if (!data.room) throw error(404, 'Room Not Found')
 
   if (data.room.status === 'waiting') {

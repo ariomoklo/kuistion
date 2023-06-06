@@ -1,5 +1,9 @@
 /// <reference types="unplugin-icons/types/svelte" />
 
+import type { z } from "zod"
+import { zGameStatus, zQuestion, zRoom, zTurn } from "$utils/types/room"
+import type { zPlayer } from "$utils/types/player"
+
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 declare global {
@@ -12,54 +16,22 @@ declare global {
 			pname: string | undefined
 			token: string | undefined
 		}
-		
-		type GameStatus = 'waiting' | 'ready' | 'in-play' | 'finish'
 
-		interface Player {
-			id: string
-			name: string
-			ready: boolean
-			point: number
-			vote?: boolean
-			asker?: boolean
-			host?: boolean
-			winner?: boolean
-		}
+		/** 
+		 * firebase realtime db path 
+		 * 
+		 * users path: 'users/<username>'
+		 * games path: 'users/<username>/games/<roomname>'
+		 * gamesplayer path: 'users/<username>/games/<roomname>/players/<username>'
+		 * */
+		type DBPath = 'users' | 'games' | 'playes'
 
-		interface Question {
-			id: string
-			maker: Player
-			question: string
-			choices: { 
-				id: string
-				text: string
-				correct?: boolean 
-			}[]
-		}
-
-		interface Turn {
-			player: Player
-			question: Question
-			/** Map with key of player id and boolean vote of choice is correct */
-			voters: Map<string, boolean | null> 
-			choice: { 
-				id: string
-				text: string
-			}
-		}
-
-		interface Room {
-			id: string
-			name: string
-			topic: string
-			host: Player
-			status: GameStatus
-			questionPerPlayer: number
-			questions: Question[]
-			players: Player[]
-			turns: Turn[]
-		}
+		type GameStatus = z.infer<typeof zGameStatus>
+		type Player = z.infer<typeof zPlayer>
+		type Question = z.infer<typeof zQuestion>
+		type Turn = z.infer<typeof zTurn>
+		type Room = z.infer<typeof zRoom>
 	}
 }
 
-export {};
+export { };

@@ -20,7 +20,10 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			// Define firebase service key json file here
-			'firebase-service-account-key': 'FirebaseKey.json'
+			'firebase-service-account-key': 'FirebaseKey.json',
+
+			// alias for typescript utility files
+			'$utils': './src/utils'
 		}
 	}
 };

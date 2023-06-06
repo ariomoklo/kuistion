@@ -32,6 +32,7 @@ specifiers:
   svelte: ^3.54.0
   svelte-check: ^3.0.1
   svelte-preprocess: ^5.0.3
+  sveltekit-superforms: 1.0.0-rc.2
   tailwindcss: ^3.3.1
   tslib: ^2.4.1
   typescript: ^5.0.0
@@ -76,6 +77,7 @@ devDependencies:
   svelte: 3.59.1
   svelte-check: 3.3.2_xu475yrmkl6r3r5hxjubm4dv6a
   svelte-preprocess: 5.0.3_e6zgqaujgph3bxmcnjljm7ijdq
+  sveltekit-superforms: 1.0.0-rc.2_cnbhdcvtc7g4fe5fj4g7mgo2s4
   tailwindcss: 3.3.2
   tslib: 2.5.2
   typescript: 5.0.4
@@ -4290,6 +4292,18 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
+  /sveltekit-superforms/1.0.0-rc.2_cnbhdcvtc7g4fe5fj4g7mgo2s4:
+    resolution: {integrity: sha512-ooIAhEi/QTo9bMiL+UD1vRHNxlSUnqwW8SDImkvLKo2aCtwRLPTu6JRWnGjypdxyL+IYNEhYgirO/eooqWTKbA==}
+    peerDependencies:
+      '@sveltejs/kit': 1.x
+      svelte: 3.x
+      zod: 3.x
+    dependencies:
+      '@sveltejs/kit': 1.19.0_svelte@3.59.1+vite@4.3.8
+      svelte: 3.59.1
+      zod: 3.21.4
+    dev: true
+
   /tailwindcss/3.3.2:
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
     engines: {node: '>=14.0.0'}
@@ -4778,7 +4792,6 @@ packages:
 
   /zod/3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: false
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

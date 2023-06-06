@@ -15,9 +15,9 @@ export async function POST(event: RequestEvent) {
 
   const result = await loggedInAction(data)
   if (result.status === 'error') {
-    return json({ 
+    return json({
       status: result.status,
-      errors: { form: result.form, name: result.name } 
+      errors: { form: result.form, name: result.name }
     }, { status: 400 })
   } else {
     event.cookies.set(SESSION_KEY, result.token, { maxAge: result.maxAge, expires: result.expires })
@@ -28,7 +28,7 @@ export async function POST(event: RequestEvent) {
 export async function GET(event: RequestEvent) {
   const player = new Player(event.locals.user)
   return {
-    ...player.token,
+    ...player.session,
     data: player.value
   }
 }
