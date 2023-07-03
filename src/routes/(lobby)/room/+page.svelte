@@ -1,5 +1,5 @@
 <script>
-    import Content from "$lib/about-content.svelte"
+    import Content from "$components/about-content.svelte"
 </script>
 
 <div class="flex grow w-full justify-center items-center">

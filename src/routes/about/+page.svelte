@@ -1,5 +1,5 @@
 <script>
-    import Content from "$lib/about-content.svelte"
+    import Content from "$components/about-content.svelte"
     import IconHome from "~icons/streamline/interface-home-2-door-entrance-home-house-map-roof-round"
 </script>
 

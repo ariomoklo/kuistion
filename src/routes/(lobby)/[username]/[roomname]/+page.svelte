@@ -1,5 +1,5 @@
 <script lang="ts">
-	import QuestionEditor from '$lib/question-editor.svelte';
+	import QuestionEditor from '$components/question-editor.svelte';
 	export let data;
 
 	const factory = (index: number): App.Question => ({

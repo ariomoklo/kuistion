@@ -1,11 +1,11 @@
 <script>
 	import { Drawer, ProgressBar, drawerStore } from '@skeletonlabs/skeleton';
 	import { autoModeWatcher } from '@skeletonlabs/skeleton';
-	import SidebarTemplate from '$lib/sidebar-template.svelte';
-	import SidebarLobbyAction from '$lib/sidebar-lobby-action.svelte';
-	import SidebarRoomItem from '$lib/sidebar-room-item.svelte';
-	import SidebarGameItem from '$lib/sidebar-game-item.svelte';
-	import PlayerBanner from '$lib/player-banner.svelte';
+	import SidebarTemplate from '$components/sidebar-template.svelte';
+	import SidebarLobbyAction from '$components/sidebar-lobby-action.svelte';
+	import SidebarRoomItem from '$components/sidebar-room-item.svelte';
+	import SidebarGameItem from '$components/sidebar-game-item.svelte';
+	import PlayerBanner from '$components/player-banner.svelte';
 	import IconBack from '~icons/streamline/interface-arrows-turn-backward-arrow-bend-curve-change-direction-return-left-back-backward';
 	import IconMenuBar from '~icons/streamline/interface-setting-menu-parallel-hamburger-square-navigation-parallel-hamburger-buttonmenu-square';
 	import IconClose from '~icons/streamline/interface-delete-2-remove-bold-add-button-buttons-delete';

@@ -23,7 +23,8 @@ const config = {
 			'firebase-service-account-key': 'FirebaseKey.json',
 
 			// alias for typescript utility files
-			'$utils': './src/utils'
+			'$utils': './src/utils',
+			'$components': './src/lib/components'
 		}
 	}
 };
