@@ -29,22 +29,22 @@
 					<span class="inline-flex items-center">
 						<span class="bg-black text-white px-2 py-1 rounded-s-full">point</span>
 						<span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-e-full"
-							>{playerRoomData.point}</span
+							>{playerRoomData.inGameInfo?.point ?? 0}</span
 						>
 					</span>
-					{#if playerRoomData.vote === true}
+					{#if playerRoomData.inGameInfo?.vote === true}
 						<span class="inline-flex items-center">
 							<span class="bg-black px-2 py-1 rounded-s-full">vote</span>
 							<span class="bg-success-500 px-2 py-1 rounded-e-full">correct</span>
 						</span>
-					{:else if playerRoomData.vote === false}
+					{:else if playerRoomData.inGameInfo?.vote === false}
 						<span class="inline-flex items-center">
 							<span class="bg-black text-white px-2 py-1 rounded-s-full">vote</span>
 							<span class="bg-error-500 px-2 py-1 rounded-e-full">incorrect</span>
 						</span>
 					{/if}
 
-					{#if playerRoomData.asker}
+					{#if playerRoomData.inGameInfo?.asker}
 						<span class="inline-flex items-center">
 							<span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-full"
 								>⁉️ maker</span
@@ -58,7 +58,7 @@
 						<br />Then <kbd class="bg-success-500 text-on-success-token px-1">Submit</kbd> when you are
 						ready. Good Luck 🔥.
 					</p>
-				{:else if player.ready}
+				{:else if player.inGameInfo?.ready}
 					<span class="inline-flex items-center">
 						<span class="bg-black text-white px-2 py-1 rounded-s-full">🙆‍♂️</span>
 						<span class="bg-success-500 px-2 py-1 rounded-e-full">ready</span>

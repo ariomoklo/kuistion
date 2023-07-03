@@ -1,5 +1,6 @@
 import { SESSION_KEY } from "$env/static/private"
-import { loggedInAction, Player } from "$lib/server/auth"
+import { loggedInAction } from "$lib/server/auth"
+import { PlayerAdmin } from "$lib/server/repositories/players"
 import { json, type RequestEvent } from "@sveltejs/kit"
 
 export async function OPTIONS() {
@@ -26,7 +27,7 @@ export async function POST(event: RequestEvent) {
 }
 
 export async function GET(event: RequestEvent) {
-  const player = new Player(event.locals.user)
+  const player = new PlayerAdmin(event.locals.user)
   return {
     ...player.session,
     data: player.value

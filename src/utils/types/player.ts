@@ -6,12 +6,7 @@ export const PlayerLoginInput = z.object({
 })
 
 export const zPlayer = z.object({
-  id: z.string().uuid(),
   name: z.string().min(5).transform(s => s.replaceAll(/\s/g, '-')),
-  ready: z.boolean().optional().default(true),
-  point: z.number().optional().default(0),
-  vote: z.boolean().optional(),
-  asker: z.boolean().optional(),
-  host: z.boolean().optional(),
-  winner: z.boolean().optional(),
+  createdAt: z.date().default(new Date()),
+  lastLoggedIn: z.date().default(new Date())
 })

@@ -9,10 +9,19 @@ export const actions: Actions = {
     const data = { name: form.get('name'), refresh: form.get('refresh') }
     const result = await loggedInAction(data)
 
+    const username = url.searchParams.get('username')
+    const roomname = url.searchParams.get('roomname')
+
     if (result.status === 'success') {
       cookies.set(SESSION_KEY, result.token, { maxAge: result.maxAge, expires: result.expires })
-      const href = new URL('/room', url.href).href
-      throw redirect(303, href);
+
+      const name = result.data.name
+      let target = '/' + name
+      if (username && roomname) {
+        target = ['', username, roomname].join('/')
+      }
+
+      throw redirect(303, target);
     }
 
     return fail(400, { errors: result, name: data.name, refresh: data.refresh })

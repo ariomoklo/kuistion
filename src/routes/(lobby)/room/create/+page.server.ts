@@ -1,4 +1,4 @@
-import { Player } from "$lib/server/auth";
+import { PlayerAdmin } from "$lib/server/repositories/players.js";
 import { zRoomCreateInput } from "$utils/types/room";
 import { fail, redirect } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms/server";
@@ -9,20 +9,21 @@ export async function load() {
 }
 
 export const actions = {
-  default: async ({ request, locals, url }) => {
+  default: async ({ request, locals }) => {
 
-    const player = new Player(locals.user)
+    const player = new PlayerAdmin(locals.user)
 
     const form = await superValidate(request, zRoomCreateInput)
     if (!form.valid) return fail(400, { form })
 
-    const room = await player.createRoom(form.data)
-    if (room.status) {
-      const target = new URL(['', player.value.name, room.data.name].join('/'), url.href)
-      throw redirect(303, target.href)
+    const result = await player.createRoom(form.data)
+    if (!result.success) {
+      form.errors._errors = ['Something went wrong, please try again later!']
+      return fail(400, { form })
     }
 
-    return fail(400, { form })
+    const game = result.data
+    throw redirect(303, ['', player.value.name, game.room.value.name].join('/'))
   }
 };
 

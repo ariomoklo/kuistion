@@ -19,38 +19,38 @@
 			<article>
 				<p class="mb-1">
 					{player.name}
-					{player.host ? '[🤖:host]' : ''}
-					{player.winner ? '[🏆:winner]' : ''}
+					{player.inGameInfo?.host ? '[🤖:host]' : ''}
+					{player.inGameInfo?.winner ? '[🏆:winner]' : ''}
 				</p>
 				<p class="inline-flex gap-2 flex-wrap text-xs">
 					{#if room.status === 'in-play'}
 						<span class="inline-flex items-center">
 							<span class="bg-black text-white px-2 py-1 rounded-s-full">point</span>
 							<span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-e-full"
-								>{player.point}</span
+								>{player.inGameInfo?.point ?? 0}</span
 							>
 						</span>
 
-						{#if player.vote === true}
+						{#if player.inGameInfo?.vote === true}
 							<span class="inline-flex items-center">
 								<span class="bg-black px-2 py-1 rounded-s-full">vote</span>
 								<span class="bg-success-500 px-2 py-1 rounded-e-full">correct</span>
 							</span>
-						{:else if player.vote === false}
+						{:else if player.inGameInfo?.vote === false}
 							<span class="inline-flex items-center">
 								<span class="bg-black text-white px-2 py-1 rounded-s-full">vote</span>
 								<span class="bg-error-500 px-2 py-1 rounded-e-full">incorrect</span>
 							</span>
 						{/if}
 
-						{#if player.asker}
+						{#if player.inGameInfo?.asker}
 							<span class="inline-flex items-center">
 								<span class="bg-primary-500 text-on-primary-token px-2 py-1 rounded-full"
 									>⁉️ maker</span
 								>
 							</span>
 						{/if}
-					{:else if player.ready}
+					{:else if player.inGameInfo?.ready}
 						<span class="inline-flex items-center">
 							<span class="bg-black text-white px-2 py-1 rounded-s-full">🙆‍♂️</span>
 							<span class="bg-success-500 px-2 py-1 rounded-e-full">ready</span>

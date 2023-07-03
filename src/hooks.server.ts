@@ -7,6 +7,8 @@ export async function handle({ event, resolve }) {
   // setup firebase admin
   await setup()
 
+  const username = event.params.username
+  const roomname = event.params.roomname
 
   // Authenticate User Session
   const { token, pname, user } = await authenticate(event)
@@ -31,8 +33,16 @@ export async function handle({ event, resolve }) {
         return json({ code: 401, message: 'Player session not found!' }, { status: 401 })
       }
 
+      const query = []
+      if (username) query.push(`username=${username}`)
+      if (roomname) query.push(`username=${roomname}`)
+
+      const queryparams = '?' + query.join('&')
+
+      console.log({ queryparams })
+
       // redirect on html page request
-      const url = new URL('/', event.url.href)
+      const url = new URL('/' + queryparams, event.url.href)
       return Response.redirect(url.href)
     }
   } else if (event.url.pathname === '/') {

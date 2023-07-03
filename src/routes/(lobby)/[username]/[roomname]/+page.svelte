@@ -29,7 +29,7 @@
 	{:else}
 		<div class="mx-auto max-w-3xl p-4 space-y-8">
 			{#each questions as question, index}
-				<QuestionEditor {question} index={index + 1} />
+				<QuestionEditor {question} index={index + 1} editable={true} />
 			{/each}
 		</div>
 	{/if}
