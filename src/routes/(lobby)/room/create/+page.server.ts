@@ -22,8 +22,7 @@ export const actions = {
       return fail(400, { form })
     }
 
-    const game = result.data
-    throw redirect(303, ['', player.value.name, game.room.value.name].join('/'))
+    throw redirect(303, ['', player.value.name, form.data.name].join('/'))
   }
 };
 

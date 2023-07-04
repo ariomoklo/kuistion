@@ -29,22 +29,22 @@ export class GameAdmin extends Repo {
 
   protected static createGameID(host: string, name: string) {
     const id = v4()
-    const path = `${host}_${name}`
-    const ref = Repo.getdb().globals().ref()
-    ref.transaction(globals => {
-      if (!globals.library) {
-        globals.gamescount = 1
-        globals.library = {
+    const path = `${host}|${name}`
+    const ref = Repo.getdb().library()
+    ref.transaction(library => {
+      if (!library) {
+        return {
           [path]: id
         }
-      } else if (!globals.library[`${host}_${name}`]) {
-        globals.gamescount = (globals.gamescount ?? 0) + 1
-        globals.library = {
-          [path]: id
+      } else if (typeof library === 'object') {
+        const exist = library[path]
+        if (!exist) {
+          library[path] = id
+          return library
         }
       }
 
-      return globals
+      return library
     })
 
     return id
@@ -67,17 +67,25 @@ export class GameAdmin extends Repo {
     const v = zRoomCreateInput.safeParse(input)
     if (!v.success) return Repo.fail(v.error.format())
 
-    // reserve games count as id
+    // reserve id in games library
     const id = GameAdmin.createGameID(host.value.name, input.name)
-    await Repo.getdb().globals().get('gamescount').set(id)
 
     const game = new GameAdmin({
-      id, name: input.name, host: host.value.name,
+      id, name: input.name, host: host.value.name, turns: null, questions: [],
       currentTurn: null, usedQuestions: [], players: [host.value.name]
     })
 
+    const room = new RoomAdmin({
+      id, name: input.name, host: host.value.name,
+      status: "waiting", topic: input.topic, questionPerPlayer: input.questionPerPlayer,
+      currentQuestion: 0, playerReadyState: {
+        [host.value.name]: false
+      }
+    })
+
     game.save()
-    return Repo.success(game)
+    room.save()
+    return Repo.success(room)
   }
 
   constructor(value: App.GameInfo) {

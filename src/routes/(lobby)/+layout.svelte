@@ -122,7 +122,6 @@
 
 	<div class="flex flex-col justify-stretch w-full h-screen min-h-screen">
 		<PlayerBanner
-			room={data.room}
 			player={data.player}
 			meta={{ questionCount: 10, gameCount: 6 }}
 		/>

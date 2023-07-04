@@ -24,11 +24,8 @@ import { getDatabase } from 'firebase-admin/database'
  *        "playerturn": <App.PlayerTurn>[]
  *      }
  *    },
- *    "globals": {
- *      "library": {
- *        "_<username>_<roomname>": "<gameid>"
- *      }
- *      "gamescount": <number>
+ *    "library": {
+ *        "<username>|<roomname>": "<gameid>"
  *    }
  * }
  * ```
@@ -91,13 +88,7 @@ export function useDatabase() {
         // }
       }
     },
-    globals: () => ({
-      ref: () => r('globals'),
-      get: (path: 'gamescount' | 'library' | string & {}) => r(`globals/${path}`),
-      library(path: string) {
-        return r('globals/library/' + path.replaceAll('/', '_'))
-      }
-    })
+    library: () => r('globals')
   }
 }
 

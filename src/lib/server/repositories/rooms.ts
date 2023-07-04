@@ -53,7 +53,9 @@ export class RoomAdmin extends Repo {
       host: this._data.host,
       players: [this._data.host],
       currentTurn: null,
-      usedQuestions: []
+      usedQuestions: [],
+      questions: [],
+      turns: null,
     })
 
     game.save()
