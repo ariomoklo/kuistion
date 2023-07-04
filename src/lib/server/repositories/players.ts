@@ -47,16 +47,16 @@ export class PlayerAdmin extends Repo {
 
     const ref = Repo.getdb().users(trimed).value()
     const snap = await ref.once('value')
-    if (snap.exists()) return Repo.fail<string>({ _errors: ['PLayer with given name already exist!'] })
+    if (snap.exists()) return Repo.fail<string>({ _errors: ['Player with given name already exist!'] })
 
-    const player: App.Player = {
+    const player = new PlayerAdmin({
       name: trimed,
       createdAt: new Date(),
       lastLoggedIn: new Date()
-    }
+    })
 
-    await ref.set(player)
-    return Repo.success(new PlayerAdmin(player))
+    await player.save()
+    return Repo.success(player)
   }
 
   static async check(token: string) {
@@ -109,6 +109,15 @@ export class PlayerAdmin extends Repo {
       if (error instanceof ZodError) {
         return Repo.fail<App.Player>(error.format())
       }
+      return Repo.fail<App.Player>({ _errors: ['Something is wrong, please try again later.'] })
+    }
+  }
+
+  async save() {
+    try {
+      await this.ref.value().set(this.serialized)
+      return Repo.success<App.Player>(this._data)
+    } catch (error) {
       return Repo.fail<App.Player>({ _errors: ['Something is wrong, please try again later.'] })
     }
   }

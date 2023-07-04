@@ -1,20 +1,24 @@
 <script lang="ts">
 	import QuestionEditor from '$components/question-editor.svelte';
+	import { checkUserReadyState } from './functions';
 	export let data;
 
 	const factory = (index: number): App.Question => ({
 		id: index + '',
 		question: '',
-		maker: data.player,
+		maker: data.player.name,
 		choices: []
 	});
+
 	const questions = new Array(data.room?.questionPerPlayer ?? 1)
 		.fill(true)
 		.map((_, i) => factory(i));
+
+	$: playerIsReady = checkUserReadyState(data.player.name, data.room)
 </script>
 
 <div class="grow w-full overflow-auto">
-	{#if data.player.ready}
+	{#if playerIsReady}
 		{#if data.room.status === 'waiting'}
 			<div class="flex w-full h-full m-auto items-center justify-center">
 				<p>Waiting for other player</p>

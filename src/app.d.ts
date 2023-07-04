@@ -1,7 +1,7 @@
 /// <reference types="unplugin-icons/types/svelte" />
 
 import type { z } from "zod"
-import { zGameStatus, zQuestion, zRoom, zGameInfo, zGameTurn, zPlayerTurn } from "$utils/types/room"
+import { zGameStatus, zQuestion, zRoom, zGameInfo, zGameTurn, zPlayerTurn, zGameVotes } from "$utils/types/room"
 import type { zPlayer } from "$utils/types/player"
 
 // See https://kit.svelte.dev/docs/types#app
@@ -18,6 +18,7 @@ declare global {
 		}
 
 		type GameStatus = z.infer<typeof zGameStatus>
+		type VoteEnum = z.infer<typeof zGameVotes>
 
 		type Question = z.infer<typeof zQuestion>
 		type Player = z.infer<typeof zPlayer>

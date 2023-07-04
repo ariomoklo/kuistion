@@ -1,6 +1,6 @@
 import type { RequestEvent } from "@sveltejs/kit";
 import { getExpiredDate } from "$lib/server/jwt";
-import { PlayerLoginInput } from "$utils/types/player";
+import { zPlayerLoginInput } from "$utils/types/player";
 import { PlayerAdmin } from "./repositories/players";
 
 export async function authenticate(event: RequestEvent) {
@@ -18,40 +18,35 @@ export async function authenticate(event: RequestEvent) {
   return { token, pname: undefined, user: undefined }
 }
 
-export async function loggedInAction(data: { name: any, refresh?: any }): Promise<{
-  status: 'error'
-  form: string[]
-  name: string[]
+export async function loggedInAction(name: string, refresh: string | null = null): Promise<{
+  success: false,
+  errors: string[]
 } | {
-  status: 'success'
+  success: true,
   token: string
   refresh: string
   data: App.Player
   maxAge: number
   expires: Date
 }> {
-  const input = PlayerLoginInput.safeParse(data)
-
-  // json body error on validation
-  if (!input.success) {
-    const err = input.error.format()
-    return {
-      status: 'error',
-      form: [...err._errors, ...(err.refresh?._errors ?? [])],
-      name: err.name?._errors ?? ['Something went wrong, please try again later']
-    }
-  }
 
   // if refresh token empty, create new player only when given name is not exist
-  if (!input.data.refresh) {
-    const result = await PlayerAdmin.create(input.data.name)
-    if (!result.success) return { status: 'error', form: result.errors._errors, name: [] }
+  if (refresh === null) {
+
+    // Try registering new user with given username
+    const result = await PlayerAdmin.create(name)
+    if (!result.success) return { success: false, errors: result.errors._errors }
+
     const player = result.data
-    return { status: 'success', ...player.session, data: player.value, maxAge: 60 * 60 * 365, expires: getExpiredDate() }
+    return { success: true, ...player.session, data: player.value, maxAge: 60 * 60 * 365, expires: getExpiredDate() }
+
   } else {
-    const result = await PlayerAdmin.recheck(input.data.refresh, input.data.name)
-    if (!result.success) return { status: 'error', form: result.errors._errors, name: [] }
+
+    const result = await PlayerAdmin.recheck(refresh, name)
+    if (!result.success) return { success: false, errors: result.errors._errors }
+
     const player = result.data
-    return { status: 'success', ...player.session, data: player.value, maxAge: 60 * 60 * 365, expires: getExpiredDate() }
+    return { success: true, ...player.session, data: player.value, maxAge: 60 * 60 * 365, expires: getExpiredDate() }
+
   }
 }

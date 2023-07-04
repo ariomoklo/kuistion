@@ -21,14 +21,7 @@ import { getDatabase } from 'firebase-admin/database'
  *        "questions": {
  *          "<question-id>": <App.Question>
  *        },
- *        "gameturn": {
- *          "<turn-id>": <App.GameTurn>
- *        },
- *        "playerturn": {
- *          "<turn-id>": {
- *            "<username>": <App.PlayerTurn>
- *          }
- *        }
+ *        "playerturn": <App.PlayerTurn>[]
  *      }
  *    },
  *    "globals": {
@@ -82,20 +75,20 @@ export function useDatabase() {
           path.push('questions', id)
           return r(path.join('/'))
         },
-        gameturn(turnid: string) {
-          path.push('gameturn', turnid)
-          return r(path.join('/'))
-        },
-        playerturn(turnid: string) {
-          path.push('playerturn', turnid)
-          return {
-            ref: () => r(path.join('/')),
-            user(username: string) {
-              path.push(username)
-              return r(path.join('/'))
-            }
-          }
-        }
+        // gameturn(turnid: string) {
+        //   path.push('gameturn', turnid)
+        //   return r(path.join('/'))
+        // },
+        // playerturn(turnid: string) {
+        //   path.push('playerturn', turnid)
+        //   return {
+        //     ref: () => r(path.join('/')),
+        //     user(username: string) {
+        //       path.push(username)
+        //       return r(path.join('/'))
+        //     }
+        //   }
+        // }
       }
     },
     globals: () => ({

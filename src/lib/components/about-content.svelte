@@ -3,7 +3,7 @@
 <br>
 
 <h5 class="h5 font-mono"># How to play</h5>
-<div class="prose">
+<div class="prose text-token">
     <p>First every player will need to create a simple question with definitive answer based on the topic that room maker choose. The question must be multiple choice. The total of the question per player will be determined by the room maker. Then the game can be started when all the player ready.</p>
     <p>When game started, player turn will be set random. In a player turn, player will be given shuffled question then the rest of the player must vote either the answer is correct or not.</p>
     <p>Point reward on answered question:</p>

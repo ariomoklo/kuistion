@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const PlayerLoginInput = z.object({
+export const zPlayerLoginInput = z.object({
   name: z.string().trim().min(5).transform(s => s.replaceAll(/\s/g, '-')),
   refresh: z.optional(z.string().nonempty()).nullish()
 })

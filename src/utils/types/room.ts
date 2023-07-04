@@ -15,12 +15,15 @@ export const zQuestion = z.object({
 })
 
 export const zPlayerTurn = z.object({
+  turn: z.string().uuid(), // turn-id
+  player: z.string().min(5), // username
   receivedPoint: z.number().default(0),
   vote: zGameVotes.nullable(),
   choices: z.string().nullable()
 })
 
 export const zGameTurn = z.object({
+  id: z.string().uuid(), // turn-id
   player: z.string().uuid(),  // current player id that will answer the question
   question: z.string().uuid() // current question id
 })
@@ -47,6 +50,8 @@ export const zGameInfo = z.object({
   name: z.string().trim().min(5),
   host: z.string().trim().min(5),
   players: z.array(z.string().min(5)),
-  currentTurn: z.string().uuid().nullable(),
-  usedQuestions: z.array(z.string().uuid())
+  currentTurn: z.string().uuid().nullable(), // turn-id
+  usedQuestions: z.array(z.string().uuid()),
+  questions: z.array(z.string().uuid()),
+  turns: z.record(z.string().uuid(), zGameTurn).nullish().default(null) // { [turn-id]: zGameTurn }
 })

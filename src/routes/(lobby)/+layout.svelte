@@ -11,6 +11,7 @@
 	import IconClose from '~icons/streamline/interface-delete-2-remove-bold-add-button-buttons-delete';
 	import { onMount } from 'svelte';
 	import { useLocalSession } from '$utils/storage';
+	import { initFirebaseClient } from '$lib/client/firebase';
 
 	export let data;
 
@@ -20,12 +21,16 @@
 			name: data.player.name,
 			token: data.session.refresh
 		});
+
+		initFirebaseClient()
 	});
 </script>
 
-<svelte:head
-	>{@html `<script>${autoModeWatcher.toString()} autoModeWatcher();</script>`}</svelte:head
->
+<svelte:head>
+  <title>{ data.seo.title }</title>
+  <meta name="description" content="{ data.seo.desc }" />
+	{@html `<script>${autoModeWatcher.toString()} autoModeWatcher();</script>`}
+</svelte:head>
 <Drawer>
 	<SidebarTemplate>
 		<!-- Header -->

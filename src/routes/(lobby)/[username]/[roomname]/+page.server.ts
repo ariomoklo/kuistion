@@ -12,7 +12,7 @@ export async function load(event) {
   const question: App.Question = {
     id: 'b2d3fd78-2aea-4beb-88e0-ceb1f61eaeec',
     question: 'Dolore labore ut non id ?.',
-    maker: data.player,
+    maker: data.player.name,
     choices: [
       { id: 'A', text: 'Doloribus debitis sed quis similique consequuntur numquam.', correct: false },
       { id: 'B', text: 'Et aut ut expedita error facere et eligendi corporis rerum.', correct: false },
